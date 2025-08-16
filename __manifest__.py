@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': "gb_passenger",
-    "version": "18.0.0.8.0",
+    "version": "18.0.0.1.0",
 
     'summary': "Short (1 phrase/line) summary of the module's purpose",
 
