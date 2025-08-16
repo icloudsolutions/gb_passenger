@@ -1,0 +1,75 @@
+<odoo>
+    <!-- Passenger Form View -->
+    <record id="view_passenger_form" model="ir.ui.view">
+        <field name="name">sale.order.passenger.form</field>
+        <field name="model">sale.order.passenger</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Passenger Details">
+                <sheet>
+                    <group>
+                        <field name="name" placeholder="Full name"/>
+                        <field name="gender" widget="radio"/>
+                        <field name="passport_no" placeholder="e.g., P1234567"/>
+                        <field name="birth_date" placeholder="Date of Birth"/>
+                        <field name="age" readonly="1"/>
+                        <field name="age_category" readonly="1"/>
+                        <field name="booking_ref" placeholder="Booking Reference"/>
+                        <field name="ticket_no1" string="Outbound Ticket" placeholder="e.g., 1234567890"/>
+                        <field name="ticket_no2" string="Return Ticket" placeholder="e.g., 0987654321"/>
+                        <field name="room_type"/>
+                        <field name="room_nbr"/>                        
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Passenger List View (Corrected for Odoo 18) -->
+    <record id="view_passenger_list" model="ir.ui.view">
+        <field name="name">sale.order.passenger.list</field>
+        <field name="model">sale.order.passenger</field>
+        <field name="type">list</field>
+        <field name="arch" type="xml">
+            <list editable="bottom" default_order="name asc">
+                <field name="name" string="Passenger"/>
+                <field name="gender" widget="badge"/>
+                <field name="age_category"/>
+                <field name="age" readonly="1"/>
+                <field name="passport_no"/>
+                <field name="ticket_no1" string="Ticket"/>
+
+            </list>
+        </field>
+    </record>
+
+    <!-- Inherit Sale Order Form -->
+    <record id="view_order_form_inherit_passenger" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.passenger</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Passengers">
+                    <field name="passenger_ids">
+                        <list>
+                            <field name="name"/>
+                            <field name="gender" widget="badge"/>
+                            <field name="passport_no"/>
+                            <field name="age" readonly="1"/>
+                            <field name="ticket_no1"/>
+                            <field name="room_type"/>
+                            <field name="room_nbr"/>
+
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+
+
+
+
+</odoo>
